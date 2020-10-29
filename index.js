@@ -1,7 +1,15 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+
 const connection = require("./database/database");
+const Article = require("./articles/Article");
+const Category = require("./categories/Category");
+
+const categoriesController = require("./categories/categoriesController");
+const articlesController = require("./articles/articlesController")
+
+
 
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:false}));
@@ -18,6 +26,8 @@ connection
             console.log(error);
         })
 
+app.use("/",categoriesController);
+app.use("/", articlesController);
 
 app.get("/",(req,res)=>{
     res.render("index")
