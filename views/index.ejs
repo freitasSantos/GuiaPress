@@ -3,25 +3,28 @@
 <body>
     <%-include ('./partials/homenavbar.ejs'); %>
     <div class="container">
-        <tbody>
-            <tr>
-                <div class="jumbotron">
-                    <h1 class="display-4">Seja bem vindo</h1>
-                    <p class="lead">Este é um blog elaborado junto ao Guia do Programador</p>
-                </div>
-                <% articles.forEach( articles =>{ %>
-                <br>
-                <div class="card">
-                    <div class="card-header">
-                        <h2><%= articles.title %></h2>
-                    </div>
-                    <div class="card-body">
-                        <a class="btn btn-success" href="/<%= articles.slug %>">Ler artigo</a>
-                    </div>
-                </div>
-                <% }) %>
-            </tr>
-        </tbody>
+        <div class="jumbotron">
+            <h1 class="display-4">Seja bem vindo</h1>
+            <p class="lead">Este é um blog elaborado junto ao Guia do Programador</p>
+        </div>
+        <% articles.forEach( articles =>{ %>
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <h2><%= articles.title %></h2>
+            </div>
+            <div class="card-body">
+                <a class="btn btn-success" href="/<%= articles.slug %>">Ler artigo</a>
+            </div>
+        </div>
+        <% }) %>
+        <div class="row">
+            <div class="col col-12">
+                <a style="float:right;" href="/articles/page/2">Next>></a>
+            </div>
+            <hr>
+        </div>
+        <hr>
     </div>
 </body>
 <%-include ('./partials/footer.ejs'); %>
