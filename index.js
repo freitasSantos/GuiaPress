@@ -5,14 +5,21 @@ const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./users/User");
 
 const categoriesController = require("./categories/categoriesController");
-const articlesController = require("./articles/articlesController")
+const articlesController = require("./articles/articlesController");
+const usersController = require("./users/usersController");
 
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+//deixar esses tópicos abaixo da chamada do bodyParser
+app.use("/",categoriesController);
+app.use("/",articlesController);
+app.use("/",usersController);
 
 //database
 connection
@@ -23,9 +30,6 @@ connection
         .catch( (error) =>{
             console.log(error);
         })
-
-app.use("/",categoriesController);
-app.use("/", articlesController);
 
 app.get("/",(req,res)=>{
     Article.findAll({
