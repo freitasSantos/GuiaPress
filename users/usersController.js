@@ -80,8 +80,22 @@ router.post("/admin/users/update",(req,res)=>{
     }else{
         res.redirect("/");
     }
+})
 
-    
+router.post("/admin/users/delete",(req,res)=>{
+    var id = req.body.id;
+
+    if(isNaN(id) || id==undefined ){
+        res.redirect("/");
+    }else{
+        User.destroy({
+            where:{
+                id:id
+            }
+        }).then(() =>{
+            res.redirect("/admin/users");
+        })
+    }
 })
 
 module.exports = router;

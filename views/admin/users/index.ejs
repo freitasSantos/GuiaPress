@@ -3,7 +3,7 @@
 <body>
     <div class="container">
         <h2>Usuários</h2>
-        <a href="/admin/users/create" class="btn btn-success">Catastrar Usuário</a>
+        <a href="/admin/users/create" class="btn btn-success">Cadastrar Usuário</a>
         <hr>
         <table class="table table-bordered">
             <theard>
@@ -20,8 +20,12 @@
                         <td> <%= users.email %> </td>
                         <td>
                             <a href="/admin/users/edit/<%= users.id %>" class="btn btn-warning">Editar</a>
-                            <a href="#" class="btn btn-danger">Excluir</a>
                             <input type="text" name="id" value="<%= users.id %>" hidden>
+                            <form action="/admin/users/delete" method="POST" style="display: inline;"
+                            onsubmit="confirmarDelecao(event, this)">
+                                <input type="text" name="id" value="<%= users.id %>" hidden>
+                                <button type="submit" class="btn btn-danger">Deletar</button>
+                            </form>
                         </td>
                     </tr>
                 <% })%>
@@ -29,4 +33,14 @@
         </table>
     </div>
 </body>
+<script>
+    function confirmarDelecao(event, form) {
+        event.preventDefault();
+        var decision = confirm("Você quer deletar este usuário?");
+        if (decision) {
+            form.submit();
+        }
+    }
+</script>
+
 <%-include ('../../partials/footer.ejs'); %>
