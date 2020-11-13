@@ -1,0 +1,32 @@
+<%-include ('../../partials/header.ejs'); %>
+<%-include ('../../partials/navbar.ejs'); %>
+<body>
+    <div class="container">
+        <h2>Usuários</h2>
+        <a href="/admin/users/create" class="btn btn-success">Catastrar Usuário</a>
+        <hr>
+        <table class="table table-bordered">
+            <theard>
+                <tr>
+                    <td>Id</td>
+                    <td>E-mail</td>
+                    <td>Ações</td>
+                </tr>
+            </theard>
+            <tbody>
+                <% users.forEach( users =>{ %>
+                    <tr>
+                        <td> <%= users.id %> </td>
+                        <td> <%= users.email %> </td>
+                        <td>
+                            <a href="/admin/users/edit/<%= users.id %>" class="btn btn-warning">Editar</a>
+                            <a href="#" class="btn btn-danger">Excluir</a>
+                            <input type="text" name="id" value="<%= users.id %>" hidden>
+                        </td>
+                    </tr>
+                <% })%>
+            </tbody>
+        </table>
+    </div>
+</body>
+<%-include ('../../partials/footer.ejs'); %>
